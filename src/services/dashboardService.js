@@ -5,8 +5,8 @@ class DashboardService {
       }
           
       getResults() {
-          return this.$http.get('/foo/bar/');
-        // return 'test test test service';
+        //   return this.$http.get('/foo/bar/');
+        return 'test test test service';
 
       }
   }

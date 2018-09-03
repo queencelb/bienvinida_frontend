@@ -3,10 +3,8 @@
         <div class="login-logo">
           <a href="#"><b>Bienvinida's</a>
         </div>
-        <!-- /.login-logo -->
         <div class="login-box-body">
-      
-          <form >
+          <form role="form" ng-submit="vm.login(username, password)" ng-keyup="vm.errorLogin = false">
             <div class="form-group has-feedback">
               <input type="text" ng-model="username" class="form-control" placeholder="Username" required>
               <span class="fa fa-user form-control-feedback"></span>
@@ -15,23 +13,15 @@
               <input type="password" ng-model="password" class="form-control" placeholder="Password" required>
               <span class="fa fa-lock form-control-feedback"></span>
             </div>
+            <div class="text-center error" ng-if="vm.errorLogin">
+              Username/ Password does not match
+            </div>
             <div class="row">
-              <div class="col-xs-8">
-                <div class="checkbox icheck">
-                  <label>
-                    <input type="checkbox"> Remember Me
-                  </label>
-                </div>
+              <div class="col-xs-4 pull-right">
+                <button class="btn btn-primary btn-block btn-flat">Sign In</button>
               </div>
-              <!-- /.col -->
-              <div class="col-xs-4">
-                <button ng-click="vm.login(username, password)" class="btn btn-primary btn-block btn-flat">Sign In</button>
-              </div>
-              <!-- /.col -->
             </div>
           </form>
-    
-      
         </div>
       </div>
 </div>

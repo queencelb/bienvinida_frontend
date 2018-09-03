@@ -1,6 +1,13 @@
 var app = angular.module('app', ['ui.router', 'chart.js']);
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+    $httpProvider.defaults.headers.post = { 'Content-Type': 'application/x-www-form-urlencoded' };
+    $httpProvider.defaults.transformRequest = function(data){
+        if (data === undefined) {
+            return data;
+        }
+        return $.param(data);
+    }
 
     $urlRouterProvider.otherwise('/dashboard');
 

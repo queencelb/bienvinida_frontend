@@ -4,19 +4,22 @@ class MainService {
         this.$http = $http;
         this.$window = $window;
         this.init();
+        this.apiBaseUrl = 'http://localhost/files/bienvinida_api';
+        this.userInfo = this.$window.localStorage.getItem('user_logged');
     }
 
     init() {
-        const userInfo = { id: 2, name: 'Ella', password:'asdasdasdasdasdasdasdsaad'};
-        this.$window.localStorage.setItem('user_logged', JSON.stringify(userInfo));
-        this.userInfo = this.$window.localStorage.getItem('user_logged');
-        console.log(this.isLoggedin());
+        // const userInfo = { id: 2, name: 'Ella', password:'asdasdasdasdasdasdasdsaad'};
+        // this.$window.localStorage.setItem('user_logged', JSON.stringify(userInfo));
+        // this.userInfo = this.$window.localStorage.getItem('user_logged');
+        // console.log(this.isLoggedin());
     }
         
-    login() {
-      //   return this.$http.get('/foo/bar/');
-      return 'test test test service';
-
+    login(data) {
+        return this.$http.post(`${this.apiBaseUrl}/user/login`, data)
+            .then((response) => {
+                return response && response.data;
+            });
     }
 
     isLoggedin() {

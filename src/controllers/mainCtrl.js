@@ -1,6 +1,6 @@
 class MainCtrl {
     static injections() {
-        return ['$scope', '$state', 'mainService'];
+        return ['$scope', '$state', '$window', '$timeout', 'mainService'];
     }
     static ngConstruct() {
         return [...this.injections().map(el=>el.split(':').pop()), this];
@@ -16,11 +16,35 @@ class MainCtrl {
         this.init();
     }
     init() {
-        console.log(this.$state.current);
+        // const loggedIn = this.mainService.isLoggedin();
+        
+        // if(loggedIn) {
+        //     this.$timeout(() => {
+        //         this.$state.go('dashboard');
+        //         });
+        // } else {
+        //     this.$timeout(() => {
+        //         this.$state.go('login');
+        //     });
+        // }
     }
 
     login(username, password) {
-        console.log(username, password);
+        const data = { username, password };
+        this.mainService.login(data)
+            .then((response) => {
+                if(response && response.success) {
+                    this.$window.localStorage.setItem('user_logged', JSON.stringify(response.data));
+                    this.$state.go('dashboard');
+                } else {
+                    this.errorLogin = true;
+                }
+            });
+    }
+
+    logout() {
+        this.$window.localStorage.removeItem('user_logged');
+        this.$state.go('login');
     }
 }
 

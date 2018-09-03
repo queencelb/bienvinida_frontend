@@ -22,7 +22,6 @@ class DashboardCtrl {
             labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
             series: ['Series A', 'Series B'],
         };
-        console.log(this.chart);
         this.test = this.dashboardService.getResults();
     }
 }

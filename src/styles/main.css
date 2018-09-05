@@ -1,3 +1,11 @@
 .height-100 {
     height: 100%;
 }
+
+.content-padding {
+    padding: 20px;
+}
+
+.wrapper-header {
+    padding-bottom: 20px;
+}

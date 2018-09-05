@@ -5,7 +5,7 @@ class MainService {
         this.$window = $window;
         this.init();
         this.apiBaseUrl = 'http://localhost/files/bienvinida_api';
-        this.userInfo = this.$window.localStorage.getItem('user_logged');
+        this.userInfo = JSON.parse(this.$window.localStorage.getItem('user_logged'));
     }
 
     init() {
@@ -24,6 +24,15 @@ class MainService {
 
     isLoggedin() {
         return !!this.userInfo;
+    }
+
+    getLoggedIn() {
+        return JSON.parse(this.userInfo);
+    }
+
+    setLoggedIn(data) {
+        this.$window.localStorage.setItem('user_logged', JSON.stringify(data));
+        this.userInfo = JSON.parse(this.$window.localStorage.getItem('user_logged'));
     }
 }
 app.service('mainService', MainService);

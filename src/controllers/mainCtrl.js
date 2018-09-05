@@ -35,6 +35,7 @@ class MainCtrl {
             .then((response) => {
                 if(response && response.success) {
                     this.$window.localStorage.setItem('user_logged', JSON.stringify(response.data));
+                    this.mainService.setLoggedIn(response.data);
                     this.$state.go('dashboard');
                 } else {
                     this.errorLogin = true;

@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'chart.js', 'ui.bootstrap']);
+var app = angular.module('app', ['ui.router', 'chart.js', 'ui.bootstrap', 'toaster']);
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $uibModalProvider) {
     $httpProvider.defaults.headers.post = { 'Content-Type': 'application/x-www-form-urlencoded' };
@@ -52,6 +52,8 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $uibModal
         
         .state('user-management', {
             url: '/user-management',
+            templateUrl: 'src/views/user-management.html',
+            controller: 'UserManagementCtrl as vm',
             title: 'User Management',
         })
         

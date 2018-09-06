@@ -1,6 +1,6 @@
 class ModalInventoryCtrl {
     static injections() {
-        return ['$uibModalInstance', 'props'];
+        return ['$uibModalInstance', 'props', 'inventoryService', 'mainService', 'toaster'];
     }
     static ngConstruct() {
         return [...this.injections().map(el=>el.split(':').pop()), this];
@@ -16,11 +16,38 @@ class ModalInventoryCtrl {
         this.init();
     }
     init() {
-
+        this.getCategories();
+        this.getMeasurements();
     }
 
-    print() {
-        this.$uibModalInstance.close('test');
+    getCategories() {
+        this.inventoryService.getCategories()
+            .then((response) => {
+                if(!response || !response.success) return;
+                    this.inventory_categories = response.data;
+            });
+    }
+
+    getMeasurements() {
+        this.inventoryService.getMeasurements()
+            .then((response) => {
+                if(!response || !response.success) return;
+                    this.inventory_measurements = response.data;
+            });
+    }
+
+    addItem(data) {
+        const modifiedBy = this.mainService.userInfo.id;
+        this.inventoryService.addItem({ ...data, modifiedBy })
+            .then((response) => {
+                if(!response || !response.success) return;
+                this.toaster.pop('success', 'Success', 'Item added successfully!', 800);
+                this.close();
+            });
+    }
+
+    close() {
+        this.$uibModalInstance.close();
     }
 }
 

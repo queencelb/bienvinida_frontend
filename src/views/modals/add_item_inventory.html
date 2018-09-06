@@ -1,59 +1,44 @@
 <div>
-  <form role="form">
+  <form role="form" ng-submit="vm.addItem(vm.form)">
     <div class="form-group">
       <label>SKU</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" ng-model="vm.form.sku" ng-required="true">
     </div>
 
     <div class="form-group">
       <label>Category</label>
-      <select class="form-control">
-        <option>option 1</option>
-        <option>option 2</option>
-        <option>option 3</option>
-        <option>option 4</option>
-        <option>option 5</option>
+      <select class="form-control" 
+          ng-required="true"
+          ng-model="vm.form.category"
+          ng-options="category.id_inventory_category as category.name_inventory_category for category in  vm.inventory_categories">
+          <option></option>
       </select>
     </div>
 
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control">
+      <input ng-required="true" type="text" ng-model="vm.form.name" class="form-control">
     </div>
     
     <div class="form-group">
       <label>Unit of Measurement</label>
-      <select class="form-control">
-        <option>option 1</option>
-        <option>option 2</option>
-        <option>option 3</option>
-        <option>option 4</option>
-        <option>option 5</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Item Type</label>
-      <select class="form-control">
-        <option>option 1</option>
-        <option>option 2</option>
-        <option>option 3</option>
-        <option>option 4</option>
-        <option>option 5</option>
+      <select class="form-control" 
+          ng-required="true"
+          ng-model="vm.form.measurement"
+          ng-options="measurement.id_unit_of_measurement as ( measurement.name_unit_measure + ' (' + measurement.unit_measure_label + ')') for measurement in  vm.inventory_measurements">
+          <option></option>
       </select>
     </div>
 
     <div class="form-group">
       <div class="checkbox">
         <label>
-          <input type="checkbox"> Is Consumable?
+          <input type="checkbox" ng-model="vm.form.isConsumable"> Is Consumable?
         </label>
       </div>
     </div>
-
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
   </form>
-</div>
-<div class="modal-footer">
-  <button class="button default" ng-click="vm.print('test')">Cancel</button>
-  <button class="button primary" ng-click="ok()">Save</button>
 </div>

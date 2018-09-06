@@ -1,0 +1,31 @@
+<div class="box">
+    <div class="box-header">
+      <h3 class="box-title">User Management</h3>
+      <button type="button" class="btn btn-primary" ng-click="vm.addItem()">Add User</button>
+    </div>
+    <div class="box-body">
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>Username</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Birthdate</th>
+          <th>Gender</th>
+          <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in vm.users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.birth_date }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.role }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.box-body -->
+  </div>

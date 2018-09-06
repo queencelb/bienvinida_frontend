@@ -16,17 +16,24 @@ class MainCtrl {
         this.init();
     }
     init() {
-        // const loggedIn = this.mainService.isLoggedin();
+        const loggedIn = this.mainService.isLoggedin();
+        console.log(!loggedIn);
+        if (!loggedIn) {
+            this.$timeout(() => {
+                this.$state.go('login');
+            });
+        }
         
-        // if(loggedIn) {
-        //     this.$timeout(() => {
-        //         this.$state.go('dashboard');
-        //         });
-        // } else {
-        //     this.$timeout(() => {
-        //         this.$state.go('login');
-        //     });
-        // }
+        if(loggedIn && this.$state.current.name === 'login') {
+            this.$timeout(() => {
+                this.$state.go('dashboard');
+                });
+        } else {
+            this.$timeout(() => {
+                this.$state.go('login');
+            });
+        }
+
     }
 
     login(username, password) {

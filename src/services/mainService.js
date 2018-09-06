@@ -23,7 +23,8 @@ class MainService {
     }
 
     isLoggedin() {
-        return !!this.userInfo;
+        const userInfo = JSON.parse(this.$window.localStorage.getItem('user_logged'));
+        return (typeof userInfo  !== 'undefined' && userInfo !== null);
     }
 
     getLoggedIn() {

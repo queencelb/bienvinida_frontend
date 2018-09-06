@@ -16,11 +16,15 @@ class InventoryCtrl {
         this.init();
     }
     init() {
+        this.getItems();
+    }
+
+    getItems() {
         this.inventoryService.getItems()
-        .then((response) => {
-            if(!response || !response.success) return;
-                this.inventory_items = response.data;
-        });
+            .then((response) => {
+                if(!response || !response.success) return;
+                    this.inventory_items = response.data;
+            });
     }
 
     addItem() {
@@ -31,8 +35,8 @@ class InventoryCtrl {
           };
 
         this.modalService.open(modalSettings).result
-          .then((data) => {
-            console.log(data);
+          .then(() => {
+            this.getItems();
           }, () => {
             console.log('cancelled');
           });

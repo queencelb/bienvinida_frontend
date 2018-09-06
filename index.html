@@ -29,12 +29,14 @@
 
   <link rel="stylesheet" href="src/styles/main.css">
   <link rel="stylesheet" href="src/styles/login.css">
+  <link rel="stylesheet" href="src/styles/toaster.css">
 
 
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
 
+    <toaster-container></toaster-container>
 
   <div class="height-100" ui-view ng-if="vm.$state.current.name === 'login'"></div>
 
@@ -206,6 +208,7 @@
   <script type="text/javascript" src="vendor/angular/angular-ui-router.min.js"></script>
   <script type="text/javascript" src="vendor/angular/angular-chart.min.js"></script>
   <script type="text/javascript" src="vendor/angular/ui-bootstrap.min.js"></script>
+  <script type="text/javascript" src="vendor/angular/angular-toaster.js"></script>
  
   <!-- <script type="text/javascript" src="vendor/angular/angular-data-table.min.js"></script> -->
   <script type="text/javascript" src="src/index.js"></script>

@@ -1,0 +1,29 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Item Management</h3>
+    <button type="button" class="btn btn-primary" ng-click="vm.addItem()">Add Item</button>
+  </div>
+  <div class="box-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>SKU</th>
+        <th>Category</th>
+        <th>Name</th>
+        <th>Unit of Measurement</th>
+        <th>Item Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in vm.inventory_items">
+        <td>{{ item.sku }}</td>
+        <td>{{ item.name_inventory_category }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.name_unit_measure }} ( {{ item.unit_measure_label }} )</td>
+        <td>{{ item.is_consumable ? 'Consumable' : 'Not Consumable' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>

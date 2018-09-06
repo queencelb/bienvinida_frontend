@@ -16,17 +16,24 @@ class MainCtrl {
         this.init();
     }
     init() {
-        // const loggedIn = this.mainService.isLoggedin();
+        const loggedIn = this.mainService.isLoggedin();
+        console.log(!loggedIn);
+        if (!loggedIn) {
+            this.$timeout(() => {
+                this.$state.go('login');
+            });
+        }
         
-        // if(loggedIn) {
-        //     this.$timeout(() => {
-        //         this.$state.go('dashboard');
-        //         });
-        // } else {
-        //     this.$timeout(() => {
-        //         this.$state.go('login');
-        //     });
-        // }
+        if(loggedIn && this.$state.current.name === 'login') {
+            this.$timeout(() => {
+                this.$state.go('dashboard');
+                });
+        } else {
+            this.$timeout(() => {
+                this.$state.go('login');
+            });
+        }
+
     }
 
     login(username, password) {
@@ -35,6 +42,7 @@ class MainCtrl {
             .then((response) => {
                 if(response && response.success) {
                     this.$window.localStorage.setItem('user_logged', JSON.stringify(response.data));
+                    this.mainService.setLoggedIn(response.data);
                     this.$state.go('dashboard');
                 } else {
                     this.errorLogin = true;

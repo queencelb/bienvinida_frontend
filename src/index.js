@@ -1,6 +1,6 @@
-var app = angular.module('app', ['ui.router', 'chart.js']);
+var app = angular.module('app', ['ui.router', 'chart.js', 'ui.bootstrap', 'toaster']);
 
-app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $httpProvider, $uibModalProvider) {
     $httpProvider.defaults.headers.post = { 'Content-Type': 'application/x-www-form-urlencoded' };
     $httpProvider.defaults.transformRequest = function(data){
         if (data === undefined) {
@@ -25,6 +25,13 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'DashboardCtrl as vm',
             title: 'Dashboard',
         })
+        
+        .state('inventory', {
+            url: '/inventory',
+            templateUrl: 'src/views/inventory.html',
+            controller: 'InventoryCtrl as vm',
+            title: 'Inventory',
+        })
 
         .state('sales', {
             url: '/sales',
@@ -38,11 +45,6 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
             title: 'Expenses',
         })
         
-        .state('inventory', {
-            url: '/inventory',
-            title: 'Inventory',
-        })
-        
         .state('reports', {
             url: '/reports',
             title: 'Reports',
@@ -50,6 +52,8 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         
         .state('user-management', {
             url: '/user-management',
+            templateUrl: 'src/views/user-management.html',
+            controller: 'UserManagementCtrl as vm',
             title: 'User Management',
         })
         
